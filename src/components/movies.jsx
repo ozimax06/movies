@@ -10,7 +10,8 @@ class Movies extends Component {
                 <Movie
                  key={movie.id}
                  title={movie.title}
-                 image={movie.image}
+                 vote_average={movie.vote_average}  
+                 image={movie.image}       
                 />
             ))}
             </div>

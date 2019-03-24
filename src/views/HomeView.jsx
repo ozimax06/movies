@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import Movies from "../components/movies";
 
 class HomeView extends Component {
-    state = {
-        movies: [
-          { id: 1, title: "movie-1", value: 0, image: "https://image.tmdb.org/t/p/w500_and_h282_face/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg" },
-          { id: 2, title: "movie-2",value: 0, image: "https://image.tmdb.org/t/p/w500_and_h282_face/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg" },
-          { id: 3, title: "movie-3",value: 0, image: "https://image.tmdb.org/t/p/w500_and_h282_face/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg"},
-          { id: 4, title: "movie-4",value: 0, image: "https://image.tmdb.org/t/p/w500_and_h282_face/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg" },
-          { id: 5, title: "movie-5",value: 0, image: "https://image.tmdb.org/t/p/w500_and_h282_face/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg" },
-          { id: 6, title: "movie-6",value: 0, image: "https://image.tmdb.org/t/p/w500_and_h282_face/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg" }
-        ]
-      };
+  
+  state = {
+    movies: []
+  };
+
+
+  componentDidMount() {
+    axios.get("https://api.themoviedb.org/3/discover/movie?api_key=d331c4b01a300c6f096743c16cdff671&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1")
+      .then(res => {
+      
+        const movies = [];
+
+        var movieList = res.data.results;
+        movieList.sort((a, b) => (a.vote_average < b.vote_average) ? 1 : -1);
+
+        movieList.forEach(function(element) {
+          var movie = {};
+          movie.id = element.id;
+          movie.vote_average = element.vote_average;
+          movie.title = element.title;
+          movie.image  = "https://image.tmdb.org/t/p/w500_and_h282_face/" + element.poster_path;
+
+          movies.push(movie);
+        });
+        this.setState({ movies });
+      })
+    }
+   
     render() { 
         return ( 
             <div>

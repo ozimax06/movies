@@ -13,7 +13,7 @@ class Movie extends Component {
                     <div className="btn-group">
                         <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
                     </div>
-                    <small className="text-muted">9 mins</small>
+                    <small className="text-muted">{this.props.vote_average}</small>
                     </div>
                 </div>
             </div>
