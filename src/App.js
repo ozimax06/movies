@@ -8,8 +8,8 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-import Movie from './views/Movie';
-import Home from './views/Home';
+import MovieDetail from './views/MovieDetail';
+import HomeView from './views/HomeView';
 
 class App extends Component {
   render() {
@@ -17,14 +17,14 @@ class App extends Component {
       <div className="App">
         <div className="menu">
             <ul>
-              <li> <Link to="/">Home</Link> </li>
-              <li> <Link to="/movie">Movie</Link> </li>
+              <li> <Link to="/">HomeView</Link> </li>
+              <li> <Link to="/movie">MovieDetail</Link> </li>
             </ul>
         </div>
         <div className="App-intro">
           <Switch>
-            <Route exact path="/"  component={Home} />
-            <Route path="/movie" component={Movie} />
+            <Route exact path="/"  component={HomeView} />
+            <Route path="/movie" component={MovieDetail} />
             <Redirect to="/" />
           </Switch>
         </div>
