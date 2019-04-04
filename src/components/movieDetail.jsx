@@ -25,7 +25,9 @@ class MovieDetail extends Component {
             "https://image.tmdb.org/t/p/w500_and_h282_face/" +
             res.data.poster_path,
           popularity: res.data.popularity,
-          overview: res.data.overview
+          overview: res.data.overview,
+          release_date: res.data.release_date,
+          genres: res.data.genres
         });
       });
   }
@@ -41,15 +43,31 @@ class MovieDetail extends Component {
               src={this.state.image}
               alt="Card image cap"
             />
-            <p className="lead">
-              This example is a quick exercise to fixed to top navbar works. As
-              you scroll, it will remain fixed to the top of your browser's
-              viewport.
-            </p>
+            <p className="lead">{this.state.overview}</p>
+            <div className="row">
+              <div className="col-sm">
+                Release Date: <b>{this.state.release_date}</b>
+              </div>
+              <div className="col-sm" />
+              Popularity: <b> {this.state.popularity}</b>
+              <div className="col-sm" />
+              {this.formatGenres(this.state.genres)}
+            </div>
           </div>
         </main>
       </div>
     );
+  }
+
+  formatGenres(genres) {
+    if (genres !== undefined) {
+      let result = "";
+      genres.forEach(element => {
+        result += element.name + " ";
+      });
+      return result;
+    }
+    return "";
   }
 }
 
