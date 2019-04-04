@@ -32,6 +32,14 @@
   }
 }
 
-.menu{
+.menu {
   border: 1px solid black;
+}
+
+.jumbotron {
+  background-color: white !important;
+}
+
+.movie-detail-image {
+  width: 60% !important;
 }

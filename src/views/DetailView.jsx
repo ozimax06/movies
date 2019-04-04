@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Movies from "../components/movieDetail";
 import MovieDetail from "../components/movieDetail";
 
 class DetailView extends Component {
   state = {
-    id: 0
+    id: this.props.match.params.id
   };
 
-  componentDidMount() {
-    const id = this.props.match.params.id;
-
-    this.setState({ id });
-  }
   render() {
     return (
       <div>
-        <h2>{this.state.id}</h2>
-        <MovieDetail />
+        <MovieDetail key={this.state.id} id={this.state.id} />
       </div>
     );
   }
